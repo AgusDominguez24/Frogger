@@ -606,6 +606,13 @@ static void imprimirPlayer(int x, int y, int facing)	// Imprime el jugador, en c
 	return;
 }
 
+void set_fullscreen(ALLEGRO_DISPLAY* display) {
+	int width = al_get_display_width(display);
+	int height = al_get_display_height(display);
+	al_set_display_flags(display, ALLEGRO_FULLSCREEN_WINDOW);
+	al_resize_display(display, width, height);
+}
+
 int init(void)	// inicializa todo lo vinculado con allegro
 {
 	if(!al_init())	// Inicializa allegro
@@ -624,6 +631,7 @@ int init(void)	// inicializa todo lo vinculado con allegro
 	
 	al_set_window_title(ventana, "Frogger");	// Nombre
 	al_set_window_position(ventana, 650, 200);	// Posición, pusimos una cualquiera
+	set_fullscreen(display);
 	
 	if(!al_init_font_addon())	// Los módulos a continuación verifican que no hayan errores ya sea en las fuentes, mouse, teclado, etc
 	{
